@@ -1,5 +1,7 @@
 Beyond Z Canvas LMS
 ======
+🛑 OBSOLETE. UPDATE ME! 🛑
+======
 
 How to install:
 -----
