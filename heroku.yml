@@ -42,5 +42,6 @@ run:
     image: web
 
 release:
+  image: worker
   command:
     - bundle exec rake db:migrate
