@@ -7,7 +7,7 @@
 setup:
   config:
     RAILS_ENV: production
-    DOMAIN: stagingportal-bebraven-dot-org.herokuapp.com
+    RACK_ENV: production
 
 # Note that config values in here are only available at Build time, not runtime. Use setup: section for runtime vars.
 build:
@@ -18,7 +18,7 @@ build:
     web: Dockerfile.production
   config:
     RAILS_ENV: production
-    DOMAIN: stagingportal-bebraven-dot-org.herokuapp.com
+    RACK_ENV: production
     JS_BUILD_NO_UGLIFY: 1
 
 run:
@@ -40,3 +40,7 @@ run:
       # vendor/bundle/ruby/2.1.0/gems/inst-jobs-0.11.2/lib/delayed/cli.rb
       - bundle exec script/canvas_init run
     image: web
+
+release:
+  command:
+    - bundle exec rake db:migrate
