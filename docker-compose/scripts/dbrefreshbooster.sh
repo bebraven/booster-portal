@@ -44,11 +44,10 @@ cat <<EOF | docker-compose exec -T canvasdb psql -U canvas canvas
   -- This is the hashed value of the dev only encryption key used in security.yml
   update settings set value = '40ed0028ef3004ed37cbec550a57bcde82472631' where name = 'encryption_key_hash';
 
-  -- The 'Beyond Z Platform Integration' access token for dev is:
-  -- BEW8ldtbMypKZiCs8EmW2eQXfOoBpfOEwNJXwyvfIKZIpMgQzBfYUugc4V20oFgt
+  -- The 'Braven Platform Client' access token for dev is:
+  -- XAlbyObifoe76wJECtpLDGEvIVViPVklRnhAkWvUFIm8957NSS5eonRn5oYGqb0y 
   -- These are the encrypted values that the above accces token works against:
-  -- TODO: API access will be broken until we fix this
-  -- update access_tokens set crypted_token = 'd3cb10787c10be0c15bd036f1ae502360e4cc7c4', token_hint = 'BEW8l' where id = 2;
+  -- update access_tokens set crypted_token = '38085caa1b4efd6e878bb2ffd786846a58a622e4', token_hint = 'XAlby' where id = 1;
 
   insert into settings (name, value, created_at, updated_at)
   select 'cas_timelimit', '15', NOW(), NOW()
