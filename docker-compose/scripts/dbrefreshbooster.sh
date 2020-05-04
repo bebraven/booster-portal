@@ -11,6 +11,7 @@ sleep 5 # wait for canvasdb container to be accepting connections
 aws s3 cp "s3://booster-staging-db-dumps/$dbfilename" - | gunzip | sed -e "
 
   s/https:\/\/stagingplatform.bebraven.org/http:\/\/platformweb:3020/g;
+  s/https:\/\/stagingboosterplatform.braven.org/http:\/\/platformweb:3020/g;
   s/https:\/\/stagingjoin.bebraven.org/http:\/\/joinweb:3001/g;
 
   # Also fix up internal links in assignments to stay on staging as we navigate
