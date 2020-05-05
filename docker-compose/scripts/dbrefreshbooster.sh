@@ -47,7 +47,7 @@ cat <<EOF | docker-compose exec -T canvasdb psql -U canvas canvas
   -- The 'Braven Platform Client' access token for dev is:
   -- XAlbyObifoe76wJECtpLDGEvIVViPVklRnhAkWvUFIm8957NSS5eonRn5oYGqb0y 
   -- These are the encrypted values that the above accces token works against:
-  -- update access_tokens set crypted_token = '38085caa1b4efd6e878bb2ffd786846a58a622e4', token_hint = 'XAlby' where id = 1;
+  update access_tokens set crypted_token = '38085caa1b4efd6e878bb2ffd786846a58a622e4', token_hint = 'XAlby' where id = 1;
 
   insert into settings (name, value, created_at, updated_at)
   select 'cas_timelimit', '15', NOW(), NOW()
