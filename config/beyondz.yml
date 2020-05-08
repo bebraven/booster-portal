@@ -30,3 +30,4 @@ staging:
 
 production:
   <<: *default_settings
+  dev_tools_enabled: <%= ENV.fetch('DEV_TOOLS_ENABLED') { false } %>
