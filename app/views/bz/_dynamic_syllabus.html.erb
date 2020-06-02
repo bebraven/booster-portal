@@ -30,6 +30,8 @@
     Modules need images and intro text added.
   -->
 
+  <% graded_modules = {} %>
+
   <div class="bz-course-part-task-box" id="bz-task-part-box">
     <%
       objs = []
@@ -101,6 +103,9 @@
       @course.assignments.active.each do |obj|
         text = nil
         if obj.title.starts_with? "Course Participation - "
+          disp_name = obj.title["Course Participation - ".length .. -1]
+
+          graded_modules[disp_name] = true unless obj.grading_type == 'not_graded'
 
           submission = obj.find_or_create_submission(@current_user)
           if submission
@@ -116,7 +121,6 @@
           end
 
           text = 'Complete Module'
-          disp_name = obj.title["Course Participation - ".length .. -1]
           icon = 'document'
           # need the page for the direct link
           mod = @course.context_modules.active.where(:name => disp_name).first
@@ -264,7 +268,7 @@
 
         <% end %>
       <% end %>
-      <% if @bypass_lock || (progress && progress.workflow_state == 'completed') %>
+      <% if graded_modules[mod.name] && (@bypass_lock || (progress && progress.workflow_state == 'completed')) %>
         <div class="bz-explain-grade-link"><a href="/bz/grade_details?module_item_id=<%= mod.content_tags.first.id %>">Explain Grade</a></div>
       <% end %>
     </div>
