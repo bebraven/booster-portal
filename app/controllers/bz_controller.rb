@@ -1596,7 +1596,7 @@ class BzController < ApplicationController
 
     account.docusign_access_token = answer["access_token"]
     account.docusign_refresh_token = answer["refresh_token"]
-    account.docusign_account_id = second_answer["accounts"][0]["account_id"]
+    account.docusign_account_id = ENV.fetch('BZ_DOCUSIGN_ACCOUNT_ID') { second_answer["accounts"][0]["account_id"] }
     account.docusign_base_uri = second_answer["accounts"][0]["base_uri"]
     account.docusign_token_expiration = DateTime.now + answer["expires_in"].to_i.seconds
 
