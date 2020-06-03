@@ -87,7 +87,13 @@ class BZGrading
           end
         end
 
-        doc.css('.bz-box .bz-toggle-all-next').each do |o|
+        # The progress is the count of the number of done buttons they've clicked out
+        # of the total. This is a bit hacky and should probably look for whether we're dealing with
+        # old OR new HTML, but since they're mutually exclusive it should always work.
+        doc.css('.bz-box .bz-toggle-all-next').each do |o| # old HTML
+          final_position += 1
+        end
+        doc.css('.done-button').each do |o| # new HTML
           final_position += 1
         end
 
