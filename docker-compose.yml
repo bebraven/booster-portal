@@ -3,7 +3,7 @@ version: "3.5"
 services:
 
   canvasdb:
-    image: postgres:9.3
+    image: postgres:11.6
     volumes:
       - canvas-db:/var/lib/postgresql/data
     networks:
