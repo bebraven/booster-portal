@@ -1,5 +1,24 @@
-Beyond Z Canvas LMS
+Braven Portal aka Canvas LMS
 ======
+
+Just dropping this here for now but this whole README needs to be updated:
+
+### Switching b/n Booster and Accelerator dev mode.
+Set your `AWS_BUCKET` in your local shell to one of the following:
+
+    AWS_BUCKET=beyondz-dev-canvas-files            # Accelerator
+    AWS_BUCKET=booster-portal-dev-file-uploads     # Booster
+
+Then run:
+
+    docker-compose down 
+    docker volume rm canvas-lms_canvas-db 
+
+Then run **one** of the following database refresh scripts:
+
+    echo "Setting up Accelerator DB" && ./docker-compose/scripts/dbrefresh.sh
+    echo "Setting up Booster DB" && ./docker-compose/scripts/dbrefreshbooster.sh
+
 🛑 OBSOLETE. UPDATE ME! 🛑
 ======
 
