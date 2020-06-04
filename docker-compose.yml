@@ -3,7 +3,7 @@ version: "3.5"
 services:
 
   canvasdb:
-    image: postgres:11.6
+    image: postgres:11.7
     volumes:
       - canvas-db:/var/lib/postgresql/data
     networks:
@@ -11,6 +11,7 @@ services:
     environment:
       POSTGRES_USER: canvas
       POSTGRES_DB: canvas
+      POSTGRES_HOST_AUTH_METHOD: trust
 
   canvasredis:
     image: redis:5.0.6 
