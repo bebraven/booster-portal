@@ -36,6 +36,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -qq \
       unzip \
       fontforge \
       vim \
+      python-lxml \
   && npm cache clean -f \
   && npm install -g n \
   && n 0.12.14 \
