@@ -30,8 +30,8 @@ fi
 cp -a /app/docker-compose/.env /app/.env
 
 echo "Checking if the AWS ENV vars are setup"
-if [ -z "$AWS_ACCESS_KEY_ID" ] || [ -z "$AWS_SECRET_ACCESS_KEY" ]; then
-  echo "The AWS ENV vars arent setup. One of the following is empty: AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY"
+if [ -z "$AWS_ACCESS_KEY_ID" ] || [ -z "$AWS_SECRET_ACCESS_KEY" ] || [ -z "$AWS_BUCKET" ]; then
+  echo "The AWS ENV vars arent setup. One of the following is empty: AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY, AWS_BUCKET=$AWS_BUCKET"
   exit 1
 else
   echo "Ok!"

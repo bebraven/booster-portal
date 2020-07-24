@@ -36,6 +36,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -qq \
       unzip \
       fontforge \
       vim \
+      python-lxml \
   && npm cache clean -f \
   && npm install -g n \
   && n 0.12.14 \
@@ -61,6 +62,11 @@ COPY --chown=dockeruser:dockeruser config/canvas_rails4_2.rb /app/config/
 USER dockeruser
 #RUN bundle install --path vendor/bundle --without=sqlite mysql --jobs 4 --verbose
 RUN bundle install --path vendor/bundle --without=sqlite mysql --jobs 4
+
+# This sets up the QTI Migration tool. This used to be part of the deploy script
+# in config/deploy. Moving to containers we left this step out
+RUN git clone https://github.com/instructure/QTIMigrationTool.git ./vendor/QTIMigrationTool \
+  && chmod +x ./vendor/QTIMigrationTool/migrate.py
 
 # TODO: when copying all the individual files over, the manifest gets too big for Heroku to handle
 # aka: latest: digest: sha256:XXXXXX size: 7655

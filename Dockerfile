@@ -36,6 +36,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -qq \
       unzip \
       fontforge \
       vim \
+      python-lxml \
   && npm cache clean -f \
   && npm install -g n \
   && n 0.12.14 \
@@ -63,6 +64,12 @@ USER dockeruser
 
 #RUN bundle install --path vendor/bundle --without=sqlite mysql --jobs 4 --verbose
 RUN bundle install --path vendor/bundle --without=sqlite mysql --jobs 4
+
+
+# This sets up the QTI Migration tool. This used to be part of the deploy script
+# in config/deploy. Moving to containers we left this step out
+RUN git clone https://github.com/instructure/QTIMigrationTool.git ./vendor/QTIMigrationTool \
+  && chmod +x ./vendor/QTIMigrationTool/migrate.py
 
 # Copy the files needed for rake canvas:compile_assets to work
 # By explicitly doing only the files needed, rebuilds won't re-run 

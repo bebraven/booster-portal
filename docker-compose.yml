@@ -3,7 +3,7 @@ version: "3.5"
 services:
 
   canvasdb:
-    image: postgres:9.3
+    image: postgres:11.7
     volumes:
       - canvas-db:/var/lib/postgresql/data
     networks:
@@ -11,6 +11,7 @@ services:
     environment:
       POSTGRES_USER: canvas
       POSTGRES_DB: canvas
+      POSTGRES_HOST_AUTH_METHOD: trust
 
   canvasredis:
     image: redis:5.0.6 
@@ -53,12 +54,15 @@ services:
       - ./spec:/app/spec
       - ./db/migrate:/app/db/migrate
       - ./docker-compose:/app/docker-compose
+      - ./public/bz_support.js:/app/public/bz_support.js
+      - ./public/bz_support.css:/app/public/bz_support.css
      # Note: if you try and mount the entire "public" directory as a volume, it will mask the stuff generated inside 
      # the container at build time during compile_assets and you'll get all sorts of "not found" console errors.
     networks:
       - bravendev
     environment:
       RACK_ENV: development
+      AWS_BUCKET: ${AWS_BUCKET}
       AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
       AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
     depends_on:
