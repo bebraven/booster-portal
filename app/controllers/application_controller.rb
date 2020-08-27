@@ -1111,25 +1111,28 @@ class ApplicationController < ActionController::Base
   end
 
   def post_terms_accept_url
-    # Can we find a pre-accelerator survey for them? if so, send them there
-    course_id = 0
-    assignment_id = 0
-    @current_user.enrollments.active.each do |enrollment|
-      result = enrollment.course.assignments.where(:title => "Pre-Accelerator Survey")
-      if result.any?
-        if enrollment.course.id > course_id
-          course_id = enrollment.course.id
-          assignment_id = result.first.id
-        end
-      end
-    end
-    if course_id > 1
-      next_url = "/courses/#{course_id}/assignments/#{assignment_id}"
-    else
-      next_url = "/"
-    end
+    # We just want them to go home now
+    return "/"
 
-    return next_url
+    # Can we find a pre-accelerator survey for them? if so, send them there
+    # course_id = 0
+    # assignment_id = 0
+    # @current_user.enrollments.active.each do |enrollment|
+    #   result = enrollment.course.assignments.where(:title => "Pre-Accelerator Survey")
+    #   if result.any?
+    #     if enrollment.course.id > course_id
+    #       course_id = enrollment.course.id
+    #       assignment_id = result.first.id
+    #     end
+    #   end
+    # end
+    # if course_id > 1
+    #   next_url = "/courses/#{course_id}/assignments/#{assignment_id}"
+    # else
+    #   next_url = "/"
+    # end
+
+    # return next_url
   end
 
   def require_reacceptance_of_terms
