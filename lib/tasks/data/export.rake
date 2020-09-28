@@ -1,26 +1,50 @@
 namespace :data do
   namespace :export do
 
+    def export_download(course_id)
+      admin = User.find 1
+      puts("### Exporting data for Course #{course_id} - #{Time.now.strftime("%Y-%m-%d %H:%M:%S %Z")}")
+      Export::GradeDownload.csv(admin, course_id: course_id)
+    end
+
+    desc 'Extract out the column names and generate the migration'
+    task :generate_scores_migration, [:course_id] => :environment do |t, args|
+      course_id = args[:course_id].to_i
+      puts("Exporting download for Course #{course_id}")
+      download = export_download(course_id)
+      header = nil
+      CSV.parse(download) { |r| header = r; break }
+
+      puts """
+class CreateProjectScores#{course_id}Table < ActiveRecord::Migration
+  tag :predeploy
+  def change
+    orig_column_names = #{header}
+
+    create_table :course#{course_id}_project_scores do |t|
+      orig_column_names.each do |col_name|
+
+        new_name = col_name.downcase.gsub(/[^0-9a-z]/, '_').to_sym
+        if ['Student Name', 'Student Email'].member? col_name then
+          t.string new_name
+        else
+          t.integer new_name
+        end
+      end
+    end
+  end
+end
+"""
+    end
+
+
     desc 'Extract project component scores out into a separate table'
     task :project_scores, [:course_id] => :environment do |t, args|
 
-      admin = User.find 1
-      scores_model_by_id = {
-#        71 => Course71ProjectScore, # Fall 2019 - SJSU
-#        73 => Course73ProjectScore, # Fall 2019 - RUN
-#        81 => Course81ProjectScore, # Fall 2019 - BravenX
-        87 => Course87ProjectScore,  # Spring 2020 - NLU Q1
-        86 => Course86ProjectScore,  # Spring 2020 - NLU Q2
-        89 => Course89ProjectScore,  # Spring 2020 - RUN
-        90 => Course90ProjectScore,  # Spring 2020 - SJSU
-        91 => Course91ProjectScore   # Spring 2020 - Lehman
-      }
       course_id = args[:course_id].to_i
-      klass = scores_model_by_id[course_id]
+      klass = "Course#{course_id}ProjectScore".constantize
       klass.column_names.delete('id')
-
-      puts("### Exporting data for Course #{course_id} - #{Time.now.strftime("%Y-%m-%d %H:%M:%S %Z")}")
-      output = Export::GradeDownload.csv(admin, course_id: course_id)
+      output = export_download(course_id)
 
       # we want to truncate and not just delete so that the ids start back at 1
       # the way Periscope syncing works means that old rows will get overwritten this
