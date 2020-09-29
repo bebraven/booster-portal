@@ -1,7 +1,8 @@
 #!/bin/bash
 echo "Refreshing your local dev database from the staging db"
  
-dbfilename='lms_staging_db_latest.sql.gz'
+# dbfilename='lms_staging_db_latest.sql.gz'
+dbfilename='snapshots/lms_staging_db_20200807.sql.gz'
 
 docker-compose down
 docker volume rm canvas-lms_canvas-db
