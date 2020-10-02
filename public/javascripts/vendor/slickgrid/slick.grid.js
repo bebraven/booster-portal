@@ -208,6 +208,7 @@ if (typeof Slick === "undefined") {
     // Initialization
 
     function init() {
+      debugger;
       $outerContainer = $(container);
       $container_1 = $outerContainer;
       if ($outerContainer.length < 1) {
@@ -750,8 +751,8 @@ if (typeof Slick === "undefined") {
       for (var i = 0; i < columns.length; i++) {
         var m = columns[i];
 
-        var header = $("<div class='ui-state-default slick-header-column' />")
-            .html("<span class='slick-column-name'>" + m.name + "</span>")
+        var header = $("<div tabindex='0' class='ui-state-default slick-header-column' />")
+            .html("<span class='slick-column-name test'>" + m.name + "</span>")
             .width(m.width - headerColumnWidthDiff)
             .attr("id", "" + uid + m.id)
             .attr("title", m.toolTip || "")
@@ -793,6 +794,9 @@ if (typeof Slick === "undefined") {
         setupColumnReorder();
       }
     }
+
+    debugger;
+    console.log('we are here boys');
 
  	  function setupColumnSort() {
 	    $headers_1.add(options.numberOfColumnsToFreeze ? $headers_0 : null)
