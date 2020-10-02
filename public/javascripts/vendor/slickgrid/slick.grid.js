@@ -795,9 +795,6 @@ if (typeof Slick === "undefined") {
       }
     }
 
-    debugger;
-    console.log('we are here boys');
-
  	  function setupColumnSort() {
 	    $headers_1.add(options.numberOfColumnsToFreeze ? $headers_0 : null)
       .click(function (e) {
