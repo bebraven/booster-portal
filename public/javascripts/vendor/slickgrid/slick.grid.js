@@ -208,7 +208,6 @@ if (typeof Slick === "undefined") {
     // Initialization
 
     function init() {
-      debugger;
       $outerContainer = $(container);
       $container_1 = $outerContainer;
       if ($outerContainer.length < 1) {
@@ -752,7 +751,7 @@ if (typeof Slick === "undefined") {
         var m = columns[i];
 
         var header = $("<div tabindex='0' class='ui-state-default slick-header-column' />")
-            .html("<span class='slick-column-name test'>" + m.name + "</span>")
+            .html("<span class='slick-column-name'>" + m.name + "</span>")
             .width(m.width - headerColumnWidthDiff)
             .attr("id", "" + uid + m.id)
             .attr("title", m.toolTip || "")
