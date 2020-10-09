@@ -2,7 +2,8 @@
 
 <form method="GET">
   <input type="hidden" name="module_item_id" value="<%= @module_item_id %>" />
-  <select name="user_id">
+  <label class="sr-only" for="username">Select a username</label>
+  <select id="username" name="user_id">
 <%
   @course.students.active.order(:name).each do |student|
   %>
