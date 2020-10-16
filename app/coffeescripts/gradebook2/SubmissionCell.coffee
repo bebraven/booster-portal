@@ -164,7 +164,7 @@ define [
   class SubmissionCell.out_of extends SubmissionCell
     init: () ->
       submission = @opts.item[@opts.column.field]
-      labelId = labelId  + 1;
+      labelId = labelId + 1 || 1;
       
       @$wrapper = $(@cellWrapper("""
         <div class="overflow-wrapper">
