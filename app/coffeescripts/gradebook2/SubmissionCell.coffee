@@ -164,10 +164,13 @@ define [
   class SubmissionCell.out_of extends SubmissionCell
     init: () ->
       submission = @opts.item[@opts.column.field]
+      labelId = labelId + 1 || 1;
+      
       @$wrapper = $(@cellWrapper("""
         <div class="overflow-wrapper">
+          <div id="grade-#{labelId}" class="sr-only">Grade:</div>
           <div class="grade-and-outof-wrapper">
-            <input type="text" #{htmlEscape @ariaLabel(submission.submission_type)} class="grade"/><span class="outof"><span class="divider">/</span>#{htmlEscape @opts.column.object.points_possible}</span>
+            <input aria-labelledby="grade-#{labelId}" type="text" #{htmlEscape @ariaLabel(submission.submission_type)} class="grade"/><span class="outof"><span class="divider">/</span>#{htmlEscape @opts.column.object.points_possible}</span>
           </div>
         </div>
       """, { classes: 'gradebook-cell-out-of-formatter' })).appendTo(@opts.container)
