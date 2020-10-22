@@ -372,6 +372,7 @@ define([
 
       if ($button.hasClass('showAll')) {
         $button.text(I18n.t('hide_all_details_button', 'Hide All Details'));
+        var counter = 0;
         $("tr.student_assignment.editable").each(function(assignment) {
           var assignmentId = $(this).getTemplateValue('assignment_id');
           var muted = $(this).data('muted');
@@ -379,6 +380,11 @@ define([
             $('#comments_thread_' + assignmentId).show();
             $('#rubric_' + assignmentId).show();
             $('#grade_info_' + assignmentId).show();
+            $('#grade_info_' + assignmentId).attr("tabindex", "0");
+            if (counter == 0) {
+              $('#grade_info_' + assignmentId).focus();
+            }
+            counter += 1;
           }
         });
       } else {
