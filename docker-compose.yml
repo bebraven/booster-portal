@@ -5,6 +5,7 @@ services:
   canvasdb:
     image: postgres:11.7
     volumes:
+      - ./latest.dump:/latest.dump
       - canvas-db:/var/lib/postgresql/data
     networks:
       - bravendev
