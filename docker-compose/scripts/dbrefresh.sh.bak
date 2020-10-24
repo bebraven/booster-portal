@@ -10,15 +10,15 @@ sleep 5 # wait for canvasdb container to be accepting connections
 
 aws s3 cp "s3://canvas-staging-db-dumps/$dbfilename" - | gunzip | sed -e "
 
-  s/https:\/\/stagingsso.bebraven.org/http:\/\/platformweb:3020\/cas/g;
-  s/https:\/\/stagingplatform.bebraven.org/http:\/\/platformweb:3020/g;
-  s/https:\/\/stagingjoin.bebraven.org/http:\/\/joinweb:3001/g;
+  s/https:\/\/sso.bebraven.org/http:\/\/platformweb:3020\/cas/g;
+  s/https:\/\/platform.bebraven.org/http:\/\/platformweb:3020/g;
+  s/https:\/\/join.bebraven.org/http:\/\/joinweb:3001/g;
 
   # Also fix up internal links in assignments to stay on staging as we navigate
-  s/https:\/\/stagingportal.bebraven.org/http:\/\/canvasweb:3000/g;
+  s/https:\/\/portal.bebraven.org/http:\/\/canvasweb:3000/g;
 
   # If we have links to the kits from the LC playbook, fix that up.
-  s/https:\/\/stagingkits.bebraven.org/http:\/\/kitsweb:3005/g;
+  s/https:\/\/kits.bebraven.org/http:\/\/kitsweb:3005/g;
 
   # Also fix up links to custom CSS/JS. Note: we could do this on this row but it's a pain
   # select id, name, settings from accounts where id = 1;
