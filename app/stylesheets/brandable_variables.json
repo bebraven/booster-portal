@@ -4,7 +4,7 @@
   "variables": [{
     "variable_name": "ic-brand-primary",
     "type": "color",
-    "default": "#0096db"
+    "default": "#0076BB"
   },{
     "variable_name": "ic-brand-button--primary-bgd",
     "type": "color",
@@ -24,7 +24,7 @@
   },{
     "variable_name": "ic-link-color",
     "type": "color",
-    "default": "#0081bd"
+    "default": "#0071AD"
   }
 ]},
 {
@@ -191,7 +191,7 @@
   {
     "variable_name": "ic-brand-Login-Content-button-bgd",
     "type": "color",
-    "default": "#0096db"
+    "default": "#0076BB"
   },
   {
     "variable_name": "ic-brand-Login-Content-button-text",
