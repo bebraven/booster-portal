@@ -145,7 +145,7 @@ function viewAssignmentAudit(link) {
         <a href="<%= context_url(@context, :context_url) %>"><%= t('links.course_home', "Course Home") %></a>
       </div>
     </div>
-    <div class="right">
+    <div class="right" style="min-width:20%;">
       <div class="left">
         <button id="keyboard-shortcut-info-icon" class="Button Button--icon-action-rev" type="button">
           <span class="screenreader-only"><%= t('Keyboard Shortcuts') %></span>
@@ -159,7 +159,7 @@ function viewAssignmentAudit(link) {
       <% end %>
       <div>
         <span id="x_of_x_graded"></span>
-        <span id='average_score_wrapper' style='display:none; padding-left: 10px;'><%= before_label(:average, "Avg") %> <span id='average_score'>0.0</span></span>
+        <span id='average_score_wrapper' aria-live="polite" style='display:none; padding-left: 10px;'><%= before_label(:average, "Avg") %> <span id='average_score'>0.0</span></span>
       </div>
     </div>
     <div class='center'>
