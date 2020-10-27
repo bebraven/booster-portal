@@ -227,7 +227,7 @@
                 </span>
               <% end %>
             </span>
-            <span class="grade" tabindex="0">
+            <span class="grade" tabindex="0" aria-live="polite">
               <% if assignment.muted? %>
                 <%= image_tag "sound_mute.png", :alt => t("#gradebooks.grade.muted", "Muted"), :class => "muted_icon" %>
               <% else %>
