@@ -13,7 +13,7 @@
         <%= t('labels.final_grade_hidden', "Calculation of totals has been disabled") %>
       </div>
     <% else %>
-      <div class="student_assignment final_grade" style="font-size: 1.2em;">
+      <div class="student_assignment final_grade" style="font-size: 1.2em;"  aria-live="polite">
         <%= before_label(:total, "Total") %> <span class="grade"></span>
         <% if @context.grading_standard_enabled? %>
           <span class="final_letter_grade">
