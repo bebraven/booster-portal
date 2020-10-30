@@ -26,3 +26,5 @@ tmp/
 vendor/bundle/
 vendor/*/.git
 mkmf.log
+*.dump
+*.sql

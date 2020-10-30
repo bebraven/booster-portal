@@ -5,8 +5,8 @@ docker volume rm canvas-lms_canvas-db
 docker-compose up -d canvasdb
 sleep 5
 
-docker-compose exec canvasdb pg_restore --verbose --clean --jobs 6 --no-acl --no-owner -U canvas -d canvas latest.dump
-docker-compose exec canvasdb pg_restore --verbose --clean --jobs 6 --no-acl --no-owner -U canvas -d canvas latest.dump
+docker-compose exec canvasdb pg_restore --clean --jobs 2 --no-acl --no-owner -U canvas -d canvas latest.dump
+docker-compose exec canvasdb pg_restore --clean --jobs 2 --no-acl --no-owner -U canvas -d canvas latest.dump
 echo "Recreating database snapshot with a SQL dump..."
 docker-compose exec canvasdb pg_dump --clean -U canvas canvas > latest-tmp.sql
 
@@ -28,3 +28,5 @@ cat latest-tmp.sql | sed -e "
   s/https:\/\/s3.amazonaws.com\/canvas-stag-assets/http:\/\/cssjsweb:3004/g;
 
 " > latest.sql
+
+rm -f latest-tmp.sql
