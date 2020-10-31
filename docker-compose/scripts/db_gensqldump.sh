@@ -15,10 +15,12 @@ cat latest-tmp.sql | sed -e "
 
   s/https:\/\/sso.bebraven.org/http:\/\/platformweb:3020\/cas/g;
   s/https:\/\/platform.bebraven.org/http:\/\/platformweb:3020/g;
+  s/https:\/\/boosterplatform.braven.org/http:\/\/platformweb:3020/g;
   s/https:\/\/join.bebraven.org/http:\/\/joinweb:3001/g;
 
   # Also fix up internal links in assignments to stay on staging as we navigate
   s/https:\/\/portal.bebraven.org/http:\/\/canvasweb:3000/g;
+  s/https:\/\/booster.braven.org/http:\/\/canvasweb:3000/g;
 
   # If we have links to the kits from the LC playbook, fix that up.
   s/https:\/\/kits.bebraven.org/http:\/\/kitsweb:3005/g;

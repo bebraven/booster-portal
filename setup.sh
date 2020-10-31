@@ -1,4 +1,5 @@
 #!/bin/zsh
 
-./docker-compose/scripts/dbrefresh.sh
+app=${1:-portal-bebraven-dot-org}
+./docker-compose/scripts/dbrefresh.sh $app
 ./docker-compose/scripts/restart.sh
