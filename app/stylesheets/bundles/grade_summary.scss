@@ -169,8 +169,8 @@
 #grades_summary th.title .context {
   visibility: hidden;
   font-size: 0.8em;
-  padding-left: 10px;
-  line-height: 0.5em;
+  // padding-left: 10px;
+  line-height: 1em;
   color: #606060;
   @media print {
     visibility: visible;
