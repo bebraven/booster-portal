@@ -168,17 +168,28 @@ body {
 }
 
 .with-right-side {
-  @if $use_new_styles == false { min-width: $right_side_width + $min_main_width; }
+  @if $use_new_styles == false { 
+    @media only screen and (min-width: 721px){
+      min-width: $right_side_width + $min_main_width; 
+    }
+  }
   #right-side-wrapper {
     display: block;
     @if $use_new_styles == false {
-      float: right;
-      position: absolute;
-      top: 0;
+        @media only screen and (min-width: 721px){
+          float: right;
+          position: absolute;
+          top: 0;
+      }
     }
   }
   @if $use_new_styles == false {
-    #main { margin-right: $right_side_width; }
+    #main { 
+      @media only screen and (min-width: 721px){
+          margin-right: $right_side_width; 
+      }
+      margin-right: 20px;
+    }
   }
   #header-inner {
     max-width: $right_side_width + $max_main_width;
@@ -186,7 +197,12 @@ body {
 }
 
 .with-right-side.with-left-side {
-  @if $use_new_styles==false { min-width: $right_side_width + $left_side_width + $min_main_width; }
+  @if $use_new_styles==false 
+  { 
+    @media only screen and (min-width: 721px){
+      min-width: $right_side_width + $left_side_width + $min_main_width; 
+    }
+  }
   #header-inner {
     max-width: $right_side_width + $left_side_width + $max_main_width;
   }
@@ -201,7 +217,7 @@ body {
 // This hides stuff till the javascript has done it's stuff
 .hide-content-while-scripts-not-loaded {
   #content, #right-side-wrapper {
-    transiton: opacity 0.3s;
+    transition: opacity 0.3s;
     opacity: 1;
   }
 }
