@@ -660,7 +660,7 @@ $.widget("ui.dialog", {
 			options = this.options,
 			isVisible = this.uiDialog.is( ":visible" );
 
-		// reset content sizing2
+		// reset content sizing
 		this.element.show().css({
 			width: "auto",
 			minHeight: 0,
