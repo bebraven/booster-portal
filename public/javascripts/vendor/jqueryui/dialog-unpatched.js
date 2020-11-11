@@ -106,6 +106,8 @@ $.widget("ui.dialog", {
 				})
 				// setting tabIndex makes the div focusable
 				.attr( "tabIndex", -1)
+				.attr( "role", "dialog" )
+				.attr( "aria-labelledby", "modalTitle")
 				.keydown(function( event ) {
 					if ( options.closeOnEscape && !event.isDefaultPrevented() && event.keyCode &&
 							event.keyCode === $.ui.keyCode.ESCAPE ) {
