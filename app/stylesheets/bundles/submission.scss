@@ -33,8 +33,11 @@
     @include breakpoint(desktop) { flex: 1; }
   }
   @else {
-    float: left;
     width: 75%;
+    margin-bottom: 20px;
+    @media only screen and (min-width: 721px){
+      float: left;
+    }
   }
 }
 
@@ -48,8 +51,11 @@
     }
   }
   @else {
-    float: left;
-    width: 25%;
+    width: 60%;
+    @media only screen and (min-width: 721px){
+      float: left;
+      width: 25%;
+    }
   }
   .comments {
     height: 300px;
@@ -66,9 +72,13 @@
 }
 
 .file-upload-submission {
-  display: flex;
-  align-items: center;
+  display: inline-block;
+  
   background: $ic-color-light;
+  @media only screen and (min-width: 721px){
+    position: flex;
+    align-items: center;
+  }
   @if $use_new_styles {
     padding: $ic-sp $ic-sp/2;
     border-bottom: 1px solid $ic-border-light;
