@@ -118,8 +118,7 @@ body {
 #main {
   position: relative;
   z-index: 10;
-  padding-right: 50px;
-
+  
   @if $use_new_styles == false {
     background-color: $body-bg-color;
     border: none;
@@ -163,7 +162,11 @@ body {
     min-width: $left_side_width + $min_main_width;
     #footer { margin-left: $left_side_width; }
     #wrapper { margin-left: 0; }
-    #main { margin-left: $left_side_width; }
+    #main { 
+      margin-left: $left_side_width;  
+      /* Added 50px padding right to accomodate the help button */
+      padding-right: 50px; 
+    }
     #header-inner { max-width: $left_side_width + $max_main_width; }
   }
 }
