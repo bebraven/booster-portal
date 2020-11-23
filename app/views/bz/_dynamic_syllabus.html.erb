@@ -224,10 +224,12 @@
     <% if all_complete %>
       <button class="bz-expand-collapse-button" type="button" onclick="
         $(this.parentNode).toggleClass('bz-part-collapsed');
-        if($(this.parentNode).hasClass('bz-part-collapsed'))
+        if($(this.parentNode).hasClass('bz-part-collapsed')){
+          $(this).attr('aria-expanded', false);
           this.innerHTML = 'Expand';
-        else
+        }else{
           this.innerHTML = 'Collapse';
+          $(this).attr('aria-expanded', true);}
       ">Expand</button>
     <% end %>
 
