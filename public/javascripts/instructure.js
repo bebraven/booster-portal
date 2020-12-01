@@ -88,44 +88,57 @@ define([
         $menu = $("#menu"),
         menuItemHoverTimeoutId;
 
+    // check if menu item has dropdown
+    var menuItemsDropdown = $menu_items.has('div.menu-item-drop');
+
+    menuItemsDropdown.addClass("has-submenu");
+    menuItemsDropdown.find('a').attr('aria-haspopup', true);
+
+    menuItemsDropdown.each(function(){
+      var activatingA = $('.submenu-toggle-button');
+      var btn = '<span class="sr-only">show submenu for Courses”</span>';
+        activatingA.append(btn);
+        // $(this).find('a').attr('aria-haspopup', 'true');
+        $('.submenu-toggle-button').attr('aria-expanded', 'false');
+        $('.submenu-toggle-button').click(function(){
+          $(this).attr('aria-expanded', function (i, attr) {
+              return attr == 'true' ? 'false' : 'true'
+          });
+          $(this).parent().find('a').attr('aria-expanded', function (i, attr) {
+              return attr == 'true' ? 'false' : 'true'
+          });
+          $(this).parent().toggleClass("open");
+        });
+        
+        $(this).mouseover(function(){
+          $(this).addClass("has-submenu open");
+          clearTimeout(timer);
+        });
+
+        $(this).mouseleave(function(){
+          timer = setTimeout(function(event){
+            $(".has-submenu.open").removeClass("open");
+          }, 1000);
+        });
+    });
+
+    // $(".submenu-toggle-button").keypress(function(event) { 
+    //     if (event.keyCode === 13 || event.keyCode === 32) { 
+    //         $(".submenu-toggle-button").click(); 
+    //     } 
+    // }); 
+
     // Makes sure that the courses/groups menu is openable by clicking
     $coursesItem = $menu.find('#courses_menu_item .menu-item-title');
     $coursesItem.click(function (e) {
       if (e.metaKey || e.ctrlKey) return;
       e.preventDefault();
-      $coursesItem.focus();
+      // $coursesItem.focus();
     })
 
     function clearMenuHovers(){
       window.clearTimeout(menuItemHoverTimeoutId);
-      // this is explicitly finding every time in case
-      // someone has added menu items to the list after init
-      $menu.find(".menu-item").removeClass("hover hover-pending");
     }
-
-    function unhoverMenuItem(){
-      $menu_items.filter(".hover-pending").removeClass('hover-pending');
-      menuItemHoverTimeoutId = window.setTimeout(clearMenuHovers, 400);
-    }
-
-    function hoverMenuItem(event){
-      var hadClass = $menu_items.filter(".hover").length > 0;
-      clearMenuHovers();
-      var $elem = $(this);
-      $elem.addClass('hover-pending');
-      if(hadClass) { $elem.addClass('hover'); }
-      setTimeout(function() {
-        if($elem.hasClass('hover-pending')) {
-          $elem.addClass("hover");
-        }
-      }, 300);
-      $.publish('menu/hovered', $elem);
-    }
-
-    $menu
-      .delegate('.menu-item', 'mouseenter focusin', hoverMenuItem )
-      .delegate('.menu-item', 'mouseleave focusout', unhoverMenuItem );
-
 
     // this stuff is for the ipad, it needs a little help getting the drop menus to show up
     $menu_items.live('touchstart', function(){
