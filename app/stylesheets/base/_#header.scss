@@ -151,8 +151,10 @@
 
   .menu-item {
     position: relative;
-    display: block;
+    // display: block;
+    display: flex;
     float: left;
+    padding: 0 10px;
   }
   .menu-item-title, .menu-item-no-drop {
     position: relative;
@@ -162,11 +164,23 @@
     border: 1px solid transparent;
     border-bottom: 0 none;
     display: block;
-    padding: 6px 17px 5px;
+    padding: 6px 5px 5px 17px;
     height: 29px;
+    line-height: 29px;
     color: #fff;
     @include fontSize(15px);
   }
+
+  .submenu-toggle-button{
+    display: inline-block;
+    color: #fff;
+    background-color: transparent;
+    border: none;
+    padding: 5px 0 0;
+    justify-content: center;
+    align-items: center;
+  }
+
   .menu-item-no-drop, .menu-item-title {
     &:hover, &:focus { text-decoration: underline; }
   }
@@ -180,7 +194,7 @@
       background-color: $courses-dropdown-menu-bg;
     }
     // bring it back on screen so you can see it
-    .menu-item-drop { left: 0; }
+    .menu-item-drop { display: block; }
   }
 
   .menu-item-drop {
@@ -188,7 +202,7 @@
     // hide off screen, dont do display:none, so screenreaders can see it
     overflow: hidden;
     position: absolute;
-    left: -999999px;
+    display:none;
     background-color: $courses-dropdown-menu-bg;
     box-shadow: 0 2px 18px rgba(0, 0, 0, 0.3);
     // brings it down by one pixel so it doesn't overlap
@@ -273,6 +287,14 @@
       .name {
         display: block;
         @include fontSize($ic-font-size--small);
+      }
+    }
+  }
+
+  .menu-item {
+    &:hover, &.open{
+      .menu-item-drop{
+        display: block;
       }
     }
   }
