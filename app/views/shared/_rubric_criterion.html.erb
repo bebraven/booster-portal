@@ -12,7 +12,7 @@
 %>
 
 <tr id="criterion_<%= criterion ? criterion.id : "blank" %>" class="criterion <%= "blank" unless criterion %> <%= 'ignore_criterion_for_scoring' if criterion && criterion.ignore_for_scoring %> <%= 'learning_outcome_criterion' if learning_outcome_criterion %>" style="<%= hidden unless criterion %>">
-  <td class="criterion_description hover-container">
+  <th scope="row" class="criterion_description hover-container">
     <div class="container">
       <%= image_tag "flagged_question.png", :class => "learning_outcome_flag", :alt => t('titles.linked_to_learning_outcome', "This criterion is linked to a Learning Outcome") %>
       <span class="description criterion_description_value"><%= description %></span>
@@ -38,7 +38,7 @@
         <div><%= format_message( assessment_rating[:comments] ).first %></div>
       </div>
     <% end %>
-  </td>
+  </th>
   <td style="padding: 0;">
     <% if !edit_view && criterion && rubric && rubric.free_form_criterion_comments %>
       <div class="custom_ratings_entry assessing">
