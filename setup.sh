@@ -1,5 +1,6 @@
 #!/bin/zsh
 
 app=${1:-portal-bebraven-dot-org}
-./docker-compose/scripts/dbrefresh.sh $app
+backupid=${2:-}
+./docker-compose/scripts/dbrefresh.sh $app $backupid
 ./docker-compose/scripts/restart.sh

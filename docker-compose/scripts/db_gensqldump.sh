@@ -1,4 +1,10 @@
 #!/bin/bash
+
+# This script is used to convert a binary Postgres snapshot to a text based one for development.
+# It first wipes out the existing database and restores from a snapshot. From there it dumps the
+# now restored database to into a text based snapshot. This is needed so we can use sed to replace
+# production URLs with development ones. 
+
 echo "Restoring binary dump to database..."
 docker-compose down
 docker volume rm canvas-lms_canvas-db
@@ -6,11 +12,10 @@ docker-compose up -d canvasdb
 sleep 5
 
 docker-compose exec canvasdb pg_restore --clean --jobs 2 --no-acl --no-owner -U canvas -d canvas latest.dump
-docker-compose exec canvasdb pg_restore --clean --jobs 2 --no-acl --no-owner -U canvas -d canvas latest.dump
 echo "Recreating database snapshot with a SQL dump..."
 docker-compose exec canvasdb pg_dump --clean -U canvas canvas > latest-tmp.sql
 
-echo "Replacing production URLs with dev URLs...piping to database"
+echo "Replacing production URLs with dev URLs..."
 cat latest-tmp.sql | sed -e "
 
   s/https:\/\/sso.bebraven.org/http:\/\/platformweb:3020\/cas/g;
