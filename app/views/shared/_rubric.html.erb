@@ -100,7 +100,7 @@
       <% end %>
     </div>
     <div class="displaying">
-      <span class="title" tabindex="-1"><%= rubric.try(:title) || t(:rubric_title, "Title") %></span>
+      <h1 class="title" tabindex="-1"><%= rubric.try(:title) || t(:rubric_title, "Title") %></h1>
     </div>
     <div class="has-assessments-warning" style="<%= hidden unless edit_view && has_assessments %>">
       <%= t 'messages.rubric_in_use2', "You've already rated students with this rubric.  Any major changes could affect their assessment results." %>
