@@ -67,7 +67,7 @@
     font-size: 0.8em;
     font-weight: normal;
   }
-  tr.criterion td.criterion_description {
+  tr.criterion td.criterion_description, tr.criterion th.criterion_description {
     // :max-width 150px
     .container {
       @include revert_bootstrap_container;
