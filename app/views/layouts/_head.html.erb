@@ -11,12 +11,9 @@
 <html class="scripts-not-loaded" lang=<%= @locale %>>
 <head>
   <meta charset="utf-8">
-              <script>
-INST = <%= raw(inst_env.to_json) %>;
-  ENV = <%= raw StringifyIds.recursively_stringify_ids(js_env.clone).to_json %>;
-
-
-              </script>
+  <script>
+    ENV = <%= raw StringifyIds.recursively_stringify_ids(js_env.clone).to_json %>;
+  </script>
   <script type="application/json" id="my-current-cohort-json"><%= current_cohort.to_json.gsub("/script", "").html_safe %></script>
 
   <script src="/javascripts/vendor/jquery-1.7.2.js"></script>
