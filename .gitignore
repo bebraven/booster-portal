@@ -102,3 +102,5 @@ docker-compose.override.yml
 
 # ignore cloud9 files
 .c9/*
+*.dump
+*.sql
