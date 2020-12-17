@@ -174,7 +174,7 @@ hi there
   <div id="edit_course_home_content" style="display: none;">
     <h2><%= t('draft_state.headings.set_layout', %{Set Home Page Layout}) %></h2>
     <%= form_for :course, :url => context_url(@context, :context_url), :html => {:tabindex=>"0", :'data-turn-into-dialog'=>'{"height": 300, "width":500,"modal":true}', :title=>t('headings.choose_home_page_title', %{Choose Home Page}), :style => "display:none", :id => "edit_course_home_content_form", :method => :put} do |f| %>
-      <label for="edit_course_home_content_select"><%= t('draft_state.labels.select_content', %{Select what you'd like to display on the home page.}) %></label>
+      <span><%= t('draft_state.labels.select_content', %{Select what you'd like to display on the home page.}) %></span>
 
       <div class="form_group"><label class="radio"><input type="radio" name="course[default_view]" value="feed" <%= 'checked' if @context.default_view == 'feed' || (!has_front_page && @context.default_view == 'wiki') %>><%= t('draft_state.options.course_activity_stream', %{Course Activity Stream}) %></label></div>
       <div class="form_group">
@@ -192,7 +192,7 @@ hi there
       <div class="form_group"><label class="radio"><input type="radio" name="course[default_view]" value="syllabus" <%= 'checked' if @context.default_view == 'syllabus' %>><%= t('draft_state.options.syllabus', %{Syllabus}) %></label></div>
 
       <div class="button-container">
-        <a type="button" class="btn button-secondary dialog_closer"><%= t('draft_state.buttons.cancel', %{Cancel}) %></a>
+        <a role="button" class="btn button-secondary dialog_closer"><%= t('draft_state.buttons.cancel', %{Cancel}) %></a>
         <button type="submit" class="btn btn-primary"><%= t('draft_state.buttons.update_layout', %{Save}) %></button>
       </div>
     <% end %>
