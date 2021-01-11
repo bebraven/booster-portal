@@ -52,8 +52,8 @@ define([
     var keyboardShortcutsView = new RCEKeyboardShortcuts();
     keyboardShortcutsView.render().$el.insertBefore($(".switch_text_entry_submission_views:first"));
 
-    // remove unsupported role="tabpanel" attribute from form
-    $(".submit_assignment_form").removeAttr('role');
+     // remove unsupported role="tabpanel" attribute from form	
+     $(".submit_assignment_form").removeAttr('role');
 
     // grow and shrink the comments box on focus/blur if the user
     // hasn't entered any content.
