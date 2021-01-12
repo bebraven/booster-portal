@@ -110,12 +110,12 @@ define([
           $(this).parent().toggleClass("open");
         });
         
-        $(this).mouseover(function(){
-          $(this).addClass("has-submenu open");
+        $('.menu-item-title').mouseover(function(){
+          menuItemsDropdown.addClass("open");
           clearTimeout(timer);
         });
 
-        $(this).mouseleave(function(){
+        $('.menu-item-title').mouseleave(function(){
           timer = setTimeout(function(event){
             $(".has-submenu.open").removeClass("open");
           }, 1000);
@@ -134,7 +134,7 @@ define([
       if (e.metaKey || e.ctrlKey) return;
       e.preventDefault();
       // $coursesItem.focus();
-    })
+    })  
 
     function clearMenuHovers(){
       window.clearTimeout(menuItemHoverTimeoutId);
