@@ -158,9 +158,6 @@
   font-size: 1.1em;
   font-weight: normal;
   padding-left: 20px;
-  @media only screen and (min-width: 721px) {
-    word-break: break-all;
-  }
   @media print {
     padding-left: 0;
     font-size: 1em;
@@ -187,7 +184,6 @@
 
 #grades_summary td.due {
   font-size: 0.8em;
-  white-space: nowrap;
   @media print {
     font-size: 1em;
   }
