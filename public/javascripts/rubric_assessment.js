@@ -279,6 +279,7 @@ window.rubricAssessment = {
           $criterion
             .find(".criterion_description").addClass('original_completed').end()
             .find("#rating_" + rating.id).addClass('original_selected').addClass('selected').end()
+            .find("#rating_" + rating.id).append('<span aria-live="assertive" class="sr-only">selected</span>').end()
         }
         if(comments) $criterion.find('.criterion_comments').show();
         if(rating.points && !rating.ignore_for_scoring) {
