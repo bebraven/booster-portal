@@ -239,6 +239,7 @@ window.rubricAssessment = {
 
     $rubric.find(".criterion_description").removeClass('completed').removeClass('original_completed').end()
       .find(".rating").removeClass('selected').removeClass('original_selected').end()
+      .find(".rating").removeClass('sr_selected_indicator').end()
       .find(".custom_rating_field").val("").end()
       .find(".custom_rating_comments").text("").end()
       .find(".criterion_points").val("").change().end()
@@ -279,7 +280,7 @@ window.rubricAssessment = {
           $criterion
             .find(".criterion_description").addClass('original_completed').end()
             .find("#rating_" + rating.id).addClass('original_selected').addClass('selected').end()
-            .find("#rating_" + rating.id).append('<span aria-live="assertive" class="sr-only">selected</span>').end()
+            .find("#rating_" + rating.id).append('<span class="sr_selected_indicator" aria-live="assertive" class="sr-only">selected</span>').end()
         }
         if(comments) $criterion.find('.criterion_comments').show();
         if(rating.points && !rating.ignore_for_scoring) {
