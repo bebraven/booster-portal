@@ -229,6 +229,8 @@ hi there
           tpb.innerHTML = rs.innerHTML;
           var list = tpb.querySelector(".to-do-list");
           list.innerHTML = taskListHtml;
+          // since content is in the tpb, we need to prevent duplicate DOM ids from showing up
+          rs.innerHTML = "";  
         } else
           tpb.parentNode.removeChild(tpb);
         // moving the buttons to the bottom of the html too so I can float it right
