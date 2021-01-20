@@ -194,7 +194,7 @@
       background-color: $courses-dropdown-menu-bg;
     }
     // bring it back on screen so you can see it
-    .menu-item-drop { display: block; }
+    // .menu-item-drop { display: block; }
   }
 
   .menu-item-drop {
@@ -292,7 +292,7 @@
   }
 
   .menu-item {
-    &:hover, &.open{
+     &.open{
       .menu-item-drop{
         display: block;
       }
