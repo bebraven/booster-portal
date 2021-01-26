@@ -65,7 +65,7 @@
   </div>
 </div>
 
-<h2>
+<p class="title-heading">
 <% ot('headers.grades', "Grades for %{student}", :student => capture { %>
  <% unless @presenter.multiple_observed_students?  %>
    <%= @presenter.student_name %>
@@ -78,7 +78,7 @@
   </select>
  <% end %>
 <% }) %>
-</h2>
+</p>
 
 <% if !@context.gradebook_text.blank? %>
   <div class="bz-gradebook-note">
