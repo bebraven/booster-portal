@@ -11,9 +11,17 @@ docker volume rm canvas-lms_canvas-db
 docker-compose up -d canvasdb
 sleep 5
 
-docker-compose exec canvasdb pg_restore --clean --jobs 2 --no-acl --no-owner -U canvas -d canvas latest.dump
+# make sure we're starting from nothing
+echo "DROP SCHEMA public CASCADE;" | docker-compose exec -T canvasdb psql -U canvas -d canvas
+echo "CREATE SCHEMA public;" | docker-compose exec -T canvasdb psql -U canvas -d canvas
+
+docker-compose exec canvasdb pg_restore --jobs 1 --no-acl --no-owner -U canvas -d canvas latest.dump
 echo "Recreating database snapshot with a SQL dump..."
 docker-compose exec canvasdb pg_dump --clean -U canvas canvas > latest-tmp.sql
+
+# clear it all out again
+echo "DROP SCHEMA public CASCADE;" | docker-compose exec -T canvasdb psql -U canvas -d canvas
+echo "CREATE SCHEMA public;" | docker-compose exec -T canvasdb psql -U canvas -d canvas
 
 echo "Replacing production URLs with dev URLs..."
 cat latest-tmp.sql | sed -e "
