@@ -109,16 +109,16 @@ define([
           });
           $(this).parent().toggleClass("open");
         });
-        
-        $('.menu-item-title').mouseover(function(){
-          menuItemsDropdown.addClass("open");
-          clearTimeout(timer);
-        });
 
         $('.menu-item-title').mouseleave(function(){
           timer = setTimeout(function(event){
             $(".has-submenu.open").removeClass("open");
           }, 1000);
+        });
+        
+        $('.menu-item-title').mouseover(function(){
+          menuItemsDropdown.addClass("open");
+          clearTimeout(timer);
         });
     });
 
