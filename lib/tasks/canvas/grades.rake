@@ -1,6 +1,6 @@
 namespace :canvas do
   namespace :grades do
-    desc 'Alter module grades if the calculated grade is higher'
+    desc 'Find module grades discrepancies when computer is greater than gradebook'
     task :audit_module , [:course_id, :module_item_id] => :environment do |t, args|
 
       course = Course.find args[:course_id]
@@ -24,7 +24,6 @@ namespace :canvas do
             shown_grade: submission.score,
             calcuated: obj['total_score']
           }
-          bzg.set_user_grade_for_module(module_item_id, student, obj['total_score'])
         end
       end
 
