@@ -387,7 +387,7 @@ class BzController < ApplicationController
     submission = bzg.get_participation_assignment(cm.course, cm).find_or_create_submission(user)
 
     computed_score = @response_object['total_score'] 
-    if computed_score > submission.score
+    if computed_score > (submission.score || 0)
       bzg.set_user_grade_for_module(module_item_id, user, computed_score)
       submission = bzg.get_participation_assignment(cm.course, cm).find_or_create_submission(user)
     end
