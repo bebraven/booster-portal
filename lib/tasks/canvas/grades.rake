@@ -18,15 +18,17 @@ namespace :canvas do
         score = obj['total_score']
 
         if score > (submission.score + fudge)
-          discrepancies << {
+          discrepancy = {
             user_id: student.id,
             name: student.sortable_name,
             shown_grade: submission.score,
             calcuated: obj['total_score']
           }
+          discrepancies << discrepancy
+          bzg.set_user_grade_for_module(module_item_id, student, score)
         end
-      end
 
+      end
       puts discrepancies
     end
   end
