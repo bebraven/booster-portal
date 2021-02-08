@@ -1,6 +1,8 @@
 #!/bin/bash
 echo "Piping latest.sql to database"
-cat latest.sql | docker-compose exec -T canvasdb psql -U canvas canvas
+echo "DROP SCHEMA public CASCADE;" | docker-compose exec -T canvasdb psql -U canvas -d canvas
+echo "CREATE SCHEMA public;" | docker-compose exec -T canvasdb psql -U canvas -d canvas
+cat latest.sql | docker-compose exec -T canvasdb psql -U canvas -d canvas
 
 echo "Do unknown fancy stuff for dev env..."
 # Adjust some settings for dev
@@ -8,7 +10,7 @@ echo "Do unknown fancy stuff for dev env..."
 # - Set the dev access token and access token hint, used for other apps to be able to call into the Canvas API.
 # - Make the timeout to wait for the SSO server 15 seconds since dev can be slow, especially on first start.
 # - Disable Canvas analytics which relies on a Cassandra DB. No need for this and it clutter the error log.
-cat <<EOF | docker-compose exec -T canvasdb psql -U canvas canvas
+cat <<EOF | docker-compose exec -T canvasdb psql -U canvas -d canvas
 
   -- This is the hashed value of the dev only encryption key used in security.yml
   update settings set value = '40ed0028ef3004ed37cbec550a57bcde82472631' where name = 'encryption_key_hash';

@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Refreshing your local dev database from the staging db"
+echo "Refreshing your local dev database from the production db"
  
 app=${1:-portal-bebraven-dot-org}
 backupid=${2:-}
