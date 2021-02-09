@@ -25,6 +25,13 @@ class OpenidController < ApplicationController
     redirect_to url
   end
 
+  def trust_referrer?(referrer)
+    return false unless referrer
+    
+    urls = [BeyondZConfiguration.help_url, BeyondZConfiguration.join_url, BeyondZConfiguration.platform_url]
+    urls = urls.compact.map { |url| URI(url).host }
+    return urls.member?(URI(referrer).host)
+  end
   # We tell osqa whom to attempt authentication has via a cross-domain script tag.
   # This is those contents - just the url to pre-fill.
   #
@@ -32,7 +39,8 @@ class OpenidController < ApplicationController
   def url_script
     # Referrer check just to keep other sites from linking this in and getting our
     # user id too.
-    if request.referrer.nil? || (BeyondZConfiguration.help_url.nil? || URI(request.referrer).host == URI(BeyondZConfiguration.help_url).host) || URI(request.referrer).host == URI(BeyondZConfiguration.join_url).host
+
+    if trust_referrer?(request.referrer)
       if user_signed_in?
         code = "var bz_current_user_openid_url = #{url_for_user.to_json};"
       else
@@ -185,7 +193,7 @@ EOS
   end
 
   def approved(trust_root)
-    (BeyondZConfiguration.help_url.nil? || URI(trust_root).host == URI(BeyondZConfiguration.help_url).host) || URI(trust_root).host == URI(BeyondZConfiguration.join_url).host
+    trust_referrer?(trust_root)
   end
 
   def is_authorized(identity_url, trust_root)

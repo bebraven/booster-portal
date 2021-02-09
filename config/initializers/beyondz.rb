@@ -73,6 +73,10 @@ class BeyondZConfiguration
 
   # Returns the URL of the join server. Necessary for shared login on Champions page.  e.g. https://join.bebraven.org
   def self.join_url
+    @config[:join_url]
+  end
+
+  def self.platform_url
     @config[:base_url]
   end
 end

@@ -1,5 +1,6 @@
 common: &default_settings
   base_url: <%= ENV['BZ_BASE_URL'] %>
+  join_url: <%= ENV['BZ_JOIN_URL'] %>
   change_password_path: /users/edit
   nonexistent_user_path: /users/not_on_lms
   bitly_access_token: <%= ENV['BZ_BITLY_ACCESS_TOKEN'] %>
