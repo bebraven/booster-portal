@@ -371,14 +371,15 @@ function bzRetainedInfoSetup(readonly) {
       var browserMessage = "";
 
       if (chromeStart == -1) {
-        browserMessage = "It appears you are not using Google Chrome. Work you do may not be saved properly.";
+        browserMessage = "It appears you are not using Google Chrome. Work you do right now may not be saved properly.";
+        browserMessage += " Download and use Google Chrome for a better Portal experience.";
       } else {
         var versionStart = chromeStart + "Chrome/".length;
         var version = browserRaw.substring(versionStart, versionStart + 2);
         version = parseInt(version);
 
         if (version < 88)
-          browserMessage = "Your version of Google Chrome seems outdated. Work you do may not be saved properly.";
+          browserMessage = "Your version of Google Chrome seems outdated. Work you do right now may not be saved properly.";
       }
 
 
