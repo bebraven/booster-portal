@@ -363,31 +363,32 @@ function bzRetainedInfoSetup(readonly) {
     // if we get here, that means the browser seems to work and we can hide
     // the unsupported browser warning. let's just be extra safe and show something
     // in case they aren't using a recent version of Chrome
-    var browserRaw = navigator.userAgent;
-    var chromeStart = browserRaw.indexOf("Chrome/");
-    var browserMessage = "";
-
-    if (chromeStart == -1) {
-      browserMessage = "It appears you are not using Google Chrome. Work you do may not be saved properly.";
-    } else {
-      var versionStart = chromeStart + "Chrome/".length;
-      var version = browserRaw.substring(versionStart, versionStart + 2);
-      version = parseInt(version);
-
-      if (version < 88)
-        browserMessage = "Your version of Google Chrome seems outdated. Work you do may not be saved properly.";
-    }
-
     var nsb = document.getElementById("bz-non-supported-browser");
 
     if (nsb) {
+      var browserRaw = navigator.userAgent;
+      var chromeStart = browserRaw.indexOf("Chrome/");
+      var browserMessage = "";
+
+      if (chromeStart == -1) {
+        browserMessage = "It appears you are not using Google Chrome. Work you do may not be saved properly.";
+      } else {
+        var versionStart = chromeStart + "Chrome/".length;
+        var version = browserRaw.substring(versionStart, versionStart + 2);
+        version = parseInt(version);
+
+        if (version < 88)
+          browserMessage = "Your version of Google Chrome seems outdated. Work you do may not be saved properly.";
+      }
+
+
       if (browserMessage.length > 0) {
         nsb.textContent = browserMessage;
         nsb.style.display = "block";
       } else {
         nsb.style.display = "none";
       }
-    } 
+    }
   });
   // old one, w don't need all that info though so cutting it off while batching to optimize network use
   // http.open("GET", "/bz/user_retained_data?name=" + encodeURIComponent(name) + "&value=" + encodeURIComponent(el.value) + "&type=" + el.getAttribute("type"), true);
