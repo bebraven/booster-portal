@@ -371,8 +371,9 @@ function bzRetainedInfoSetup(readonly) {
       var browserMessage = "";
 
       if (chromeStart == -1) {
-        browserMessage = "It appears you are not using Google Chrome. Work you do right now may not be saved properly.";
-        browserMessage += " Download and use Google Chrome for a better Portal experience.";
+        browserMessage = "It appears you are not using Google Chrome on a Windows, MacOS, Linux, or ChromeOS computer. ";
+        browserMessage += "Work you do right now may not be saved properly. ";
+        browserMessage += "Download and use Google Chrome on one of these devices for a better Portal experience.";
       } else {
         var versionStart = chromeStart + "Chrome/".length;
         var version = browserRaw.substring(versionStart, versionStart + 2);
