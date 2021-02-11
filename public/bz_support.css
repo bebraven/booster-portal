@@ -126,8 +126,9 @@
   color: black;
   padding: 2em;
   margin: 0px auto;
-
   animation: 15s ease-in 0s 1 nonSupportedBrowserAnimation;
+  top: 150px;
+  left: 150px;
 }
 
 /* } done with the above */
