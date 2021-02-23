@@ -4,7 +4,15 @@ namespace :canvas do
     task :audit_module , [:course_id, :module_item_id] => :environment do |t, args|
 
       course = Course.find args[:course_id]
-      module_item_id = args[:module_item_id]
+      
+      only_these = ["Lead Authentically","Tell Your Story", "Discover Your Career Path", "Network Like a Pro", "Apply for a Job", "Polish Your Portfolio", 
+      "Ace your Interviews", "Capstone Kickoff", "Empathize", "Synthesize", "Ideate & Prototype", "Present Effectively", "Live Your Legacy"]
+      
+      module_item_id = ContentTag.where(id: course.sequential_module_item_ids, title: only_these).map(&:id)
+      # => [7873, 7874, 7875, 7876, 7877, 7878, 7879, 7880, 7881, 7882, 7883, 7884, 7910]
+      
+      
+      #module_item_id = args[:module_item_id]
       bzg = BZGrading.new
       fudge = 0.001
 
