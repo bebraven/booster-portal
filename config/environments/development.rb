@@ -37,7 +37,7 @@ environment_configuration(defined?(config) && config) do |config|
         File.write(byebug_port_file, Byebug.actual_port)
       end
     else
-      require "debugger"
+      require "pry"
     end
   end
 

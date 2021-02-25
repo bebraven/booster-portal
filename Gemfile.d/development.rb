@@ -22,5 +22,6 @@ group :development do
 
   unless ENV['DISABLE_RUBY_DEBUGGING']
     gem 'byebug', '9.0.6', platform: :mri
+    gem 'pry'
   end
 end
