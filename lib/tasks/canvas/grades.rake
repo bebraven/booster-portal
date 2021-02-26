@@ -27,7 +27,7 @@ namespace :canvas do
                                    
       bzg = BZGrading.new
       fudge = 0.001
-       
+
       discrepancies = []
       module_item_ids.each do |module_item_id|
         course.students.each do |student|
