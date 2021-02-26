@@ -104,3 +104,6 @@ docker-compose.override.yml
 .c9/*
 *.dump
 *.sql
+
+#ignore vscode
+.vscode
