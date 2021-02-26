@@ -1,13 +1,12 @@
-require 'pry'
-
 namespace :canvas do
   namespace :grades do
-    desc 'Get course ID'
+    desc 'Alter module grades if the calculated grade is higher'
     task :audit_course, [:course_id] => :environment do |t,args|
       course = Course.find args[:course_id]
 
       module_titles = [
        "Lead Authentically",
+       "NLU Lead Authentically",
        "Tell Your Story", 
        "Discover Your Career Path", 
        "Network Like a Pro",
@@ -28,10 +27,8 @@ namespace :canvas do
                                    
       bzg = BZGrading.new
       fudge = 0.001
-
        
       discrepancies = []
-      #binding.pry 
       module_item_ids.each do |module_item_id|
         course.students.each do |student|
           cm = bzg.get_context_module(module_item_id)
@@ -53,8 +50,6 @@ namespace :canvas do
           end
         end 
       end 
-      puts discrepancies
-      #binding.pry
     end 
   end 
 end
