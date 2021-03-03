@@ -1,5 +1,3 @@
-require 'pry'
-
 namespace :canvas do
   namespace :grades do
     desc 'Alter module grades if the calculated grade is higher'
@@ -58,8 +56,6 @@ namespace :canvas do
             zeros
             bzg.set_user_grade_for_module(module_item_id, student, obj['total_score'])
 
-            binding.pry
-
           elsif score > (submission.score + fudge)
 
             discrepancy = {
@@ -73,7 +69,6 @@ namespace :canvas do
             discrepancies
             bzg.set_user_grade_for_module(module_item_id, student, score)
 
-            binding.pry
           else 
             break
           end
