@@ -29,27 +29,46 @@ namespace :canvas do
       fudge = 0.001
 
       discrepancies = []
+      zeros = []
+
       module_item_ids.each do |module_item_id|
         course.students.each do |student|
+
           cm = bzg.get_context_module(module_item_id)
           submission = bzg.get_participation_assignment(cm.course, cm).find_or_create_submission(student)
+
+          if submission.score.nil? && submission.cache_due_date.try(:past?)
+
+            bzg.set_user_grade_for_module(module_item_id, student, 0)
+            zeros << { user_id: student.id, name: student.sortable_name }
+            submission.score = 0
+
+          end 
+
           next unless submission.try(:score)
 
           obj = bzg.calculate_user_module_score(module_item_id, student)
           score = obj['total_score']
 
           if score > (submission.score + fudge)
+
             discrepancy = {
               user_id: student.id,
               name: student.sortable_name,
               shown_grade: submission.score,
-              calcuated: obj['total_score']
-            } 
+              calculated: obj['total_score']
+            }
+
             discrepancies << discrepancy
             bzg.set_user_grade_for_module(module_item_id, student, score)
+
           end
+
+          puts zeros
+          puts discrepancies
+
         end 
-      end 
+      end
     end 
   end 
 end
